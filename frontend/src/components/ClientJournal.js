@@ -203,7 +203,7 @@ const ClientJournal = () => {
             </div>
           </div>
         </div>
-        <LocalJournals />
+        <LocalJournals></LocalJournals>
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const Therapist = () => {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#clientOffcanvas">
-                            Clients
+                            Patients
                         </a>
                     </li>
                 </ul>
@@ -28,12 +28,12 @@ const Therapist = () => {
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="clientOffcanvas" aria-labelledby="clientOffcanvasLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="clientOffcanvasLabel">Clients</h5>
+            <h5 class="offcanvas-title" id="clientOffcanvasLabel">Patients</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <div class="mb-3">
-                <input type="text" class="form-control" id="clientSearch" placeholder="Search clients..."></input>
+                <input type="text" class="form-control" id="clientSearch" placeholder="Search patients..."></input>
             </div>
             <div class="client-list">
                 <ul class="list-group" id="clientList">
