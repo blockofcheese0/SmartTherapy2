@@ -1,0 +1,46 @@
+.navbar-brand {
+    padding-left: 15px; /* Adjust as needed */
+}
+        .client-list {
+            max-height: 300px; /* Limits height and enables scrolling */
+            overflow-y: auto;
+        }
+        .scrollable-card {
+            height: 300px; /* Set a fixed height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .red-dot {
+            display: inline-block;
+            width: 12px; /* Size of the dot */
+            height: 12px; /* Size of the dot */
+            background-color: red; /* Red color */
+            border-radius: 50%; /* Make it round */
+            margin-right: 5px; /* Space between dot and text */
+        }
+
+        .green-dot {
+            display: inline-block;
+            width: 12px; /* Size of the dot */
+            height: 12px; /* Size of the dot */
+            background-color: rgb(0, 213, 21); /* Green color */
+            border-radius: 50%; /* Make it round */
+            margin-right: 5px; /* Space between dot and text */
+        }
+        
+        /* Make client links span full width */
+        #clientList li {
+            padding: 0; /* Remove default padding */
+        }
+        
+        #clientList a {
+            display: block; /* Make link fill the entire space */
+            padding: 0.75rem 1.25rem; /* Add padding to the link instead */
+            color: #212529; /* Default text color */
+            text-decoration: none; /* Remove underline */
+            width: 100%; /* Make link full width */
+        }
+        
+        #clientList a:hover {
+            background-color: #f8f9fa; /* Light background on hover */
+        }

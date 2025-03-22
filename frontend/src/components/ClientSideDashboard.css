@@ -1,0 +1,94 @@
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0px;
+}
+
+.left-column, .right-column {
+  flex: 1;
+  padding: 20px;
+}
+
+.left-column {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 0;
+}
+
+.welcome-image {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.calendar-container {
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+.calendar-section {
+  height: 100%;
+  overflow: visible;
+  margin: 0;
+}
+
+td.day-cell {
+    height: 60px;
+}
+
+
+.buttons-section {
+  height: 60%;  /* Adjust remaining height to 60% */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.mailbox-button, .contact-button {
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: rgb(255, 248, 239);
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.mood-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  margin: 2px auto;
+  display: block;  /* Ensure the dot is displayed */
+}
+
+.mood-dot.green { background-color: #4CAF50; }
+.mood-dot.yellow { background-color: #FFC107; }
+.mood-dot.red { background-color: #F44336; }

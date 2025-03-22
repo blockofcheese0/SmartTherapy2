@@ -1,0 +1,50 @@
+version: '3' 
+services: 
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=dbname
+      - DB_USER=dbuser
+      - DB_PASSWORD=dbpassword
+    networks:
+      - local_network
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+  frontend: 
+    build: ./frontend 
+    ports: 
+      - "3000:3000" 
+    depends_on: 
+      - backend 
+    networks: 
+      - local_network 
+ 
+  db: 
+    image: postgres:13 
+    restart: always 
+    environment: 
+      POSTGRES_USER: dbuser 
+      POSTGRES_PASSWORD: dbpassword 
+      POSTGRES_DB: dbname 
+    ports: 
+      - "5432:5432" 
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data 
+    networks: 
+      - local_network 
+ 
+volumes: 
+  postgres_data: 
+ 
+networks: 
+  local_network: 
+    driver: bridge
+
+
+    
