@@ -88,7 +88,7 @@ const LocalJournals = () => {
                 {journalEntries.map((entry, index) => (
                   <button 
                     key={index}
-                    className={`list-group-item list-group-item-action ${selectedEntry === entry ? 'active' : ''}`}
+                    className={`list-group-item list-group-item-action ${selectedEntry === entry ? 'secondary' : ''}`}
                     onClick={() => handleEntryClick(entry)}
                   >
                     <div className="d-flex w-100 justify-content-between">
@@ -109,11 +109,11 @@ const LocalJournals = () => {
                 <div className="card-header d-flex justify-content-between align-items-center">
                   <h4>{selectedEntry.prompt.title}</h4>
                   <div>
-                    <span className="badge bg-primary me-2">{formatDate(selectedEntry.date)}</span>
+                    <span className="badge  me-2">{formatDate(selectedEntry.date)}</span>
                     <button 
                       className="btn btn-sm btn-outline-danger" 
                       onClick={() => deleteEntry(journalEntries.indexOf(selectedEntry))}
-                    >
+                    >X
                       <i className="fas fa-trash-alt"></i>
                     </button>
                   </div>
