@@ -116,7 +116,7 @@ const ClientDashboard = () => {
     };
     
     // Get existing notifications from localStorage
-    const existingNotifications = JSON.parse(localStorage.getItem('tnotifications')) || [];
+    const existingNotifications = JSON.parse(localStorage.getItem('notifications')) || [];
     
     // Add the new message to the existing notifications
     const updatedNotifications = [...existingNotifications, newClientMessage];

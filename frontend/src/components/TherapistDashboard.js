@@ -14,6 +14,32 @@ const TherapistDashboard = () => {
   const [filteredNotifications, setFilteredNotifications] = useState([]);
   const [message, setMessage] = useState('');
 
+  // Create arrays of knee PT goals
+  const completedGoals = [
+    { type: 'Daily', description: 'Completed 3 sets of quad contractions', date: '2025-03-21' },
+    { type: 'Daily', description: 'Ice therapy for 20 minutes', date: '2025-03-22' },
+    { type: 'Daily', description: 'Performed leg raises (3 sets x 10 reps)', date: '2025-03-20' },
+    { type: 'Daily', description: 'Completed ankle pumps throughout the day', date: '2025-03-19' },
+    { type: 'Weekly', description: 'Achieved 110° knee flexion', date: '2025-03-17' },
+    { type: 'Weekly', description: 'Walked 1/4 mile without assistive device', date: '2025-03-16' },
+    { type: 'Weekly', description: 'Completed stationary bike for 15 minutes', date: '2025-03-18' },
+    { type: 'Monthly', description: 'Climbed one flight of stairs without pain', date: '2025-03-15' },
+    { type: 'Monthly', description: 'Reduced swelling by 80% from initial assessment', date: '2025-03-10' }
+  ];
+
+  const incompletedGoals = [
+    { type: 'Daily', description: 'Missed hamstring stretches', date: '2025-03-22' },
+    { type: 'Daily', description: 'Skipped heel slides exercises', date: '2025-03-21' },
+    { type: 'Daily', description: 'Did not complete standing weight shifts', date: '2025-03-20' },
+    { type: 'Weekly', description: 'Failed to achieve full knee extension', date: '2025-03-19' },
+    { type: 'Weekly', description: 'Missed aquatic therapy session', date: '2025-03-18' },
+    { type: 'Weekly', description: 'Did not complete balance exercises on foam pad', date: '2025-03-15' },
+    { type: 'Monthly', description: 'Unable to perform single leg squat', date: '2025-03-14' },
+    { type: 'Monthly', description: 'Did not reach goal of 1/2 mile walk', date: '2025-03-10' },
+    { type: 'Monthly', description: 'Failed to achieve proper gait pattern', date: '2025-03-05' },
+    { type: 'Monthly', description: 'Unable to return to light recreational activities', date: '2025-03-01' }
+  ];
+
   // Fetch notifications from localStorage on component mount
   useEffect(() => {
     const storedNotifications = JSON.parse(localStorage.getItem("tnotifications")) || [];
@@ -155,6 +181,20 @@ const TherapistDashboard = () => {
     alert("Check-in notification saved!");
   };
 
+  // Function to render goal badges by type
+  const renderGoalBadge = (type) => {
+    switch(type) {
+      case 'Daily':
+        return <span className="badge bg-primary me-2">Daily</span>;
+      case 'Weekly':
+        return <span className="badge bg-success me-2">Weekly</span>;
+      case 'Monthly':
+        return <span className="badge bg-warning text-dark me-2">Monthly</span>;
+      default:
+        return null;
+    }
+  };
+
   return (
     <div>
       <Therapist />
@@ -163,72 +203,39 @@ const TherapistDashboard = () => {
         <div className="row">
           <div className="col-md-3">
             <div className="card">
-              <div className="card-header lead">Completed</div>
+              <div className="card-header lead">Completed Goals</div>
               <div className="card-body scrollable-card">
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
-                <p>
-                  <span className="green-dot"></span> User completed their monthly goal
-                </p>
+                <ul className="list-group list-group-flush">
+                  {completedGoals.map((goal, index) => (
+                    <li key={`completed-${index}`} className="list-group-item d-flex align-items-start">
+                      <span className="green-dot mt-1 me-2"></span>
+                      <div>
+                        {renderGoalBadge(goal.type)}
+                        <small className="text-muted d-block mb-1">{goal.date}</small>
+                        {goal.description}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
           <div className="col-md-3">
             <div className="card">
-              <div className="card-header lead">Incompleted</div>
+              <div className="card-header lead">Incomplete Goals</div>
               <div className="card-body scrollable-card">
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
-                <p>
-                  <span className="red-dot"></span> User missed their exercises
-                </p>
+                <ul className="list-group list-group-flush">
+                  {incompletedGoals.map((goal, index) => (
+                    <li key={`incomplete-${index}`} className="list-group-item d-flex align-items-start">
+                      <span className="red-dot mt-1 me-2"></span>
+                      <div>
+                        {renderGoalBadge(goal.type)}
+                        <small className="text-muted d-block mb-1">{goal.date}</small>
+                        {goal.description}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
