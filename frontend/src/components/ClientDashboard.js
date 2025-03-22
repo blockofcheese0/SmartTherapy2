@@ -108,7 +108,41 @@ const ClientDashboard = () => {
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
-    // Here you would typically send the message to your backend
+    
+    // Create a new notification in the format used by the therapist
+    const newClientMessage = {
+      message: message,
+      timestamp: new Date().toISOString() // Use current date/time
+    };
+    
+    // Get existing notifications from localStorage
+    const existingNotifications = JSON.parse(localStorage.getItem('tnotifications')) || [];
+    
+    // Add the new message to the existing notifications
+    const updatedNotifications = [...existingNotifications, newClientMessage];
+    
+    // Save back to localStorage
+    localStorage.setItem('tnotifications', JSON.stringify(updatedNotifications));
+    
+    // Also add to the current component state with the client dashboard format
+    const newNotification = {
+      id: notifications.length + 1,
+      type: 'client',
+      title: 'Message to Therapist',
+      message: message,
+      date: formatDate(new Date()),
+      unread: false // Client's own messages are not marked as unread
+    };
+    
+    const updatedStateNotifications = [...notifications, newNotification];
+    setNotifications(updatedStateNotifications);
+    
+    // Update filtered notifications if the message is for today
+    const selectedDateStr = formatDate(selectedDate);
+    if (newNotification.date === selectedDateStr) {
+      setFilteredNotifications([...filteredNotifications, newNotification]);
+    }
+    
     console.log('Message sent:', message);
     alert('Message sent to therapist!');
     setMessage('');
@@ -201,7 +235,7 @@ const ClientDashboard = () => {
           </div>
           <div className="d-flex flex-column gap-3 ms-4 flex-grow-1 mt-4">
             <button
-              className="btn btn-primary p-4 fs-5 w-100 position-relative"
+              className="p-4 fs-5 w-100 position-relative buttonblu"
               onClick={() => setShowMailbox(!showMailbox)}>
               📫 Mailbox
               {unreadCount > 0 && (
@@ -212,7 +246,7 @@ const ClientDashboard = () => {
               )}
             </button>
             <button
-              className="btn btn-primary p-4 fs-5 w-100"
+              className="p-4 fs-5 w-100 buttonblu" 
               onClick={() => setShowContactForm(!showContactForm)}>
               👤 Contact Therapist
             </button>
@@ -298,7 +332,7 @@ const ClientDashboard = () => {
                         >
                           <div className="d-flex w-100 justify-content-between">
                             <h6 className="mb-1">
-                              {notification.unread && <span className="badge bg-primary me-1">New</span>}
+                              {notification.unread && <span className="btn btn-primary badge me-1 ">New</span>}
                               {notification.title}
                             </h6>
                             <small className="text-muted">{notification.date}</small>
@@ -307,7 +341,7 @@ const ClientDashboard = () => {
                           <div className="d-flex justify-content-end mt-2">
                             {notification.unread && (
                               <button 
-                                className="btn btn-sm btn-outline-primary me-2"
+                                className="btn btn-primary btn-sm me-2 "
                                 onClick={() => markAsRead(notification.id)}
                               >
                                 Mark as Read

@@ -37,7 +37,7 @@ const Therapist = () => {
             </div>
             <div class="client-list">
                 <ul class="list-group" id="clientList">
-                    <li class="list-group-item"><a href="therapistDashboard">John Doe</a></li>
+                    <li class="list-group-item"><a href="therapistDashboard">Test Patient</a></li>
                     <li class="list-group-item"><a href="therapistDashboard">Jane Smith</a></li>
                     <li class="list-group-item"><a href="therapistDashboard">Alex Johnson</a></li>
                     <li class="list-group-item"><a href="therapistDashboard">Emma Wilson</a></li>
